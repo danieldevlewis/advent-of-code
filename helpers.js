@@ -90,3 +90,59 @@ export function* repeatedPermutations(items, count) {
     }
   } while (true);
 }
+
+/**
+ * @template T
+ * @param {T[]} array Items to slice
+ * @param {number} length Length of slices
+ * @returns {Generator<T[]>}
+ */
+export function* eachSlice(array, length) {
+  let acc = [];
+  for (const i of array) {
+    acc.push(i);
+    if (acc.length === length) {
+      yield acc;
+      acc = [];
+    }
+  }
+  if (acc.length > 0) {
+    yield acc;
+  }
+}
+
+/**
+ * @template T
+ * @param {Iterable<T>} array Items to search for min
+ * @param {(value: T) => number} fn Method to find the minimum
+ * @returns {T}
+ */
+export function minBy(array, fn) {
+  let minValue;
+  let minCount = Infinity;
+
+  for (const i of array) {
+    const count = fn(i);
+    if (count < minCount) {
+      minValue = i;
+      minCount = count;
+    }
+  }
+  return minValue;
+}
+
+/**
+ * @template T
+ * @param {Iterable<T>} array Items to count
+ * @param {Map<T, number>} [number = new Map] map to add the counts to
+ * @returns {Map<T, number>}
+ */
+export function tally(array, map = new Map()) {
+  for (const v of array) {
+    if (!map.has(v)) {
+      map.set(v, 0);
+    }
+    map.set(v, map.get(v) + 1);
+  }
+  return map;
+}
