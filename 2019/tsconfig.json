@@ -6,6 +6,7 @@
     "rewriteRelativeImportExtensions": true,
     "erasableSyntaxOnly": true,
     "verbatimModuleSyntax": true,
-    "types": "node"
+    "types": ["node"],
+    "allowJs": true
   }
 }
