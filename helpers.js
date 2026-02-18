@@ -146,3 +146,29 @@ export function tally(array, map = new Map()) {
   }
   return map;
 }
+
+/**
+ * @param {number} a
+ * @param {number} b
+ * @returns number
+ */
+export function greatestCommonDivider(a, b) {
+  while (b !== 0) {
+    let x = b;
+    b = a % b;
+    a = x;
+  }
+  return a;
+}
+
+/**
+ * @param {number[]} numbers
+ * @returns number
+ */
+export function leastCommonMultiple(numbers) {
+  let result = numbers[0];
+  for (let i = 1; i < numbers.length; i += 1) {
+    result = (result * numbers[i]) / greatestCommonDivider(result, numbers[i]);
+  }
+  return result;
+}
