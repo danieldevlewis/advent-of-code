@@ -133,6 +133,26 @@ export function minBy(array, fn) {
 
 /**
  * @template T
+ * @param {Iterable<T>} array Items to search for min
+ * @param {(value: T) => number} fn Method to find the minimum
+ * @returns {T}
+ */
+export function maxBy(array, fn) {
+  let maxValue;
+  let maxCount = -Infinity;
+
+  for (const i of array) {
+    const count = fn(i);
+    if (count > maxCount) {
+      maxValue = i;
+      maxCount = count;
+    }
+  }
+  return maxValue;
+}
+
+/**
+ * @template T
  * @param {Iterable<T>} array Items to count
  * @param {Map<T, number>} [number = new Map] map to add the counts to
  * @returns {Map<T, number>}
