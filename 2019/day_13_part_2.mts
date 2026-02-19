@@ -11,7 +11,7 @@ program.forEach((i, index) => {
   }
 });
 
-function* run(inputs: number[] = []) {
+function* run(inputs: number[] = []): Generator<number> {
   const ints = [...program];
   let relativeBase = 0;
 
@@ -119,9 +119,9 @@ do {
   if (n.done) {
     break;
   }
-  const x = n.value as number;
-  const y = instance.next().value as number;
-  const id = instance.next().value as number;
+  const x = n.value;
+  const y = instance.next().value;
+  const id = instance.next().value;
 
   if (id === 3) {
     paddleX = x;
